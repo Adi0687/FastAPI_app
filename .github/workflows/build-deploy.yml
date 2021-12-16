@@ -3,7 +3,7 @@ name: Build and Deploy Code
 on: [push, pull_request]
 
 jobs:
-  job1:
+  build:
     environment:
       name: testing
     env:
@@ -45,5 +45,11 @@ jobs:
       - name: test with pytest
         run: pytest
 
-        
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]     
+
+    steps:
+      - name: deploying stuff
+        run: echo "going to deploy some stuff"
       
